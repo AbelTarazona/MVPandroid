@@ -1,5 +1,6 @@
 package com.example.mvpexample.View;
 
 public interface ILoginView {
-    void onLoginResult(String msg);
+    void onLoginSuccess(String msg);
+    void onLoginError(String msg);
 }

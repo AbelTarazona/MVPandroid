@@ -14,11 +14,15 @@ public class LoginPresenter implements ILoginPresenter {
     @Override
     public void onLogin(String email, String password) {
         User user = new User(email, password);
-        boolean isLoginSucces = user.isValidData();
+        int loginCode = user.isValidData();
 
-        if (isLoginSucces)
-            iLoginView.onLoginResult("Login Success");
+        if (loginCode == 0)
+            iLoginView.onLoginError("Debe ingresar su email");
+        else if (loginCode == 1)
+            iLoginView.onLoginError("Debe ingresar un email valido");
+        else if (loginCode == 2)
+            iLoginView.onLoginError("El password debe ser mayor de 6 caracteres");
         else
-            iLoginView.onLoginResult("Login Error");
+            iLoginView.onLoginSuccess("Exito");
     }
 }
